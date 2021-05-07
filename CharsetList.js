@@ -1,22 +1,26 @@
 const fs = require('fs');
  
 function convertChar(fontCharStr){
- return fontCharStr.split(' ').reduce((prevChars,v)=>{
+ let fontChars = fontCharStr.split(' ').reduce((prevChars,v)=>{
     if((/-/g).test(v)){
         let minMax = v.split('-').map(v => Number(`0x${v}`));
         for(let i=minMax[0];i<=minMax[1];i++){
-            prevChars.push(String.fromCharCode(i))
+            prevChars.push(i)
         }
 
     }else{
-        prevChars.push(String.fromCharCode(Number(`0x${v}`)))
+        prevChars.push(Number(`0x${v}`))
     }
     return prevChars
-},[]).filter(n => n !=='ﲒ').join("\n")
+},[]).filter(n => n !=='ﲒ')
+return JSON.stringify(fontChars);
 }
 
 let cairo = "20-7e a0-ac ae-131 134-137 139-13e 141-148 14a-17e 192 1fa-1ff 218-21b 2c6-2c7 2d8-2dd 3c0 60c 615 61b 61f 621-63a 640-656 658 660-671 679 67e 686 688 691 698 6a1 6a4 6a9 6af 6ba 6be 6c1-6c3 6cc 6d2-6d4 6f0-6f9 1e80-1e85 1eab 1eb0 1ec5 1ed7 1ef2-1ef3 1ef8-1ef9 2013-2014 2018-201a 201c-201e 2020-2022 2026 2030 2039-203a 2044 2070 2074-2079 2080-2089 20ac 2122 2126 2202 2206 220f 2211-2212 221a 221e 222b 2248 2260 2264-2265 25ca f6be f6c3 fb51 fb57-fb59 fb67-fb69 fb6b-fb6d fb7b-fb7d fb89 fb8b fb8d fb8f-fb91 fb93-fb95 fb9f fba7-fba9 fbab-fbad fbaf fbb1-fbb9 fbbd-fbbe fbe8-fbe9 fbfd-fbff fc64-fc65 fc67-fc6b fc6d-fc71 fc73-fc77 fc79-fc7b fc8a-fc8b fc8d-fc8f fc91-fc92 fc94 fcfb-fcfe fd05-fd08 fd0d-fd10 fd17-fd1a fd21-fd24 fd29-fd2c fd3e-fd3f fdf2 fe82 fe84 fe86 fe88 fe8a-fe8c fe8e fe90-fe92 fe94 fe96-fe98 fe9a-fe9c fe9e-fea0 fea2-fea4 fea6-fea8 feaa feac feae feb0 feb2-feb4 feb6-feb8 feba-febc febe-fec0 fec2-fec4 fec6-fec8 feca-fecc fece-fed0 fed2-fed4 fed6-fed8 feda-fedc fede-fee0 fee2-fee4 fee6-fee8 feea-feec feee fef0 fef2-fefc";
 fs.writeFileSync(`${__dirname}/Cairo-charset.txt`,convertChar(cairo));
+
+let notoSans = '20-7e a0-377 37a-37f 384-38a 38c 38e-3a1 3a3-3e1 3f0-52f 1ab0-1abe 1c80-1c88 1d00-1df5 1dfb-1f15 1f18-1f1d 1f20-1f45 1f48-1f4d 1f50-1f57 1f59 1f5b 1f5d 1f5f-1f7d 1f80-1fb4 1fb6-1fc4 1fc6-1fd3 1fd6-1fdb 1fdd-1fef 1ff2-1ff4 1ff6-1ffe 2000-2064 2066-2071 2074-208e 2090-209c 20a0-20bf 20f0 2100-215f 2184 2189 2c60-2c7f 2de0-2e44 a640-a69f a700-a7ae a7b0-a7b7 a7f7-a7ff a92e ab30-ab65 fb00-fb06 fe00 fe20-fe2f feff fffc-fffd'
+fs.writeFileSync(`${__dirname}/NotoSans-charset.txt`,convertChar(notoSans));
 
 let notoSansArabic = '20-21 2c-2e 30-3a a0 ab bb 34f 600-61c 61e-6ff 750-77f 8a0-8b4 8b6-8bd 8d4-8ff 200b-2011 204f 25cc 2e41 fb50-fbc1 fbd3-fd3f fd50-fd8f fd92-fdc7 fdf0-fdfd fe70-fe74 fe76-fefc'
 fs.writeFileSync(`${__dirname}/NotoSansArabic-charset.txt`,convertChar(notoSansArabic));

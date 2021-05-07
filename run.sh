@@ -1,68 +1,67 @@
 #!/bin/bash
 
-rm -rf default.* *.png \
+rm -rf default.* *.png *.json \
 
-msdf-bmfont \
---output-type json \
---font-size 32 \
---filename default \
---distance-range 3 \
---texture-padding 1 \
---texture-size 2048,2048 \
---field-type msdf \
---reuse default.cfg \
---square \
---charset-file ./NotoSansSC-charset-2500.txt \
-./NotoSansSC-Regular.otf \
 
-# msdf-bmfont \
+
+# node ./../projects/msdf-bmfont-map/cli.js  \
 # --output-type json \
 # --font-size 32 \
 # --filename default \
 # --distance-range 3 \
 # --texture-padding 1 \
-# --texture-size 2048,2048 \
+# --texture-size 1024,2048 \
 # --field-type msdf \
 # --reuse default.cfg \
 # --charset-file ./Roboto-charset.txt \
-# ./Roboto-Regular.ttf \
+# ./Roboto-Regular.ttf 
 
-# msdf-bmfont \
+# node ./../projects/msdf-bmfont-map/cli.js  \
 # --output-type json \
 # --font-size 32 \
 # --filename default \
 # --distance-range 3 \
 # --texture-padding 1 \
-# --texture-size 2048,2048 \
+# --texture-size 1024,2048 \
 # --field-type msdf \
 # --reuse default.cfg \
-# --rtl \
 # --charset-file ./Cairo-charset.txt \
-# ./Cairo-Regular.ttf \
+# ./Cairo-Regular.ttf 
 
-msdf-bmfont \
+# node ./../projects/msdf-bmfont-map/cli.js \
+# --output-type json \
+# --font-size 32 \
+# --filename NotoSansSC-Regular \
+# --distance-range 3 \
+# --texture-padding 1 \
+# --texture-size 2048,2048 \
+# --field-type msdf \
+# --square \
+# --charset-file ./NotoSansSC-charset-3500.txt \
+# ./NotoSansSC-Regular.otf 
+
+node ./../projects/msdf-bmfont-map/cli.js \
 --output-type json \
 --font-size 32 \
 --filename default \
 --distance-range 3 \
 --texture-padding 1 \
---texture-size 2048,2048 \
+--texture-size 2048,1536 \
 --field-type msdf \
 --reuse default.cfg \
 --charset-file ./NotoSans-charset.txt \
-./NotoSans-Regular.ttf \
+./NotoSans-Regular.ttf 
 
 
-msdf-bmfont \
+node ./../projects/msdf-bmfont-map/cli.js  \
 --output-type json \
 --font-size 32 \
 --filename default \
 --distance-range 3 \
 --texture-padding 1 \
---texture-size 2048,2048 \
+--texture-size 2048,1536 \
 --field-type msdf \
 --reuse default.cfg \
---rtl \
 --charset-file ./NotoSansArabic-charset.txt \
-./NotoSansArabic-Regular.ttf \
+./NotoSansArabic-Regular.ttf 
 
